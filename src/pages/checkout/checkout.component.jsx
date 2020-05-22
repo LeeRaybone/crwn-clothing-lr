@@ -8,6 +8,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
+
 import "./checkout.styles.scss";
 
 const CheckoutPage = ({ cartItems, total }) => (
