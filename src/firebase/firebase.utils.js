@@ -3,40 +3,39 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyB3m1hlC6LvJCcV-_Vb6V6enaEPpzTCSZg",
-  authDomain: "crwn-db-6788e.firebaseapp.com",
-  databaseURL: "https://crwn-db-6788e.firebaseio.com",
-  projectId: "crwn-db-6788e",
-  storageBucket: "crwn-db-6788e.appspot.com",
-  messagingSenderId: "73537630274",
-  appId: "1:73537630274:web:f7cfd21cb8a121fbd07ddb",
-  measurementId: "G-G3HMSNP2WF",
+  apiKey: "AIzaSyAnd00COsuuRCu9iWNKR01iloBJ3Sc8r18",
+  authDomain: "crwn-db-64cbb.firebaseapp.com",
+  databaseURL: "https://crwn-db-64cbb.firebaseio.com",
+  projectId: "crwn-db-64cbb",
+  storageBucket: "crwn-db-64cbb.appspot.com",
+  messagingSenderId: "655050722237",
+  appId: "1:655050722237:web:c38c0e698ee59d473d20d4",
+  measurementId: "G-16M7LTXQK6",
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if(!userAuth) return;
+  if (!userAuth) return;
 
-    const userRef = firestore.doc(`users/${userAuth.uid}`)
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-    const snapShot = await userRef.get();
+  const snapShot = await userRef.get();
 
-    if(!snapShot.exists){
-        const {displayName, email } = userAuth;
-        const createdAt = new Date();
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
 
-        try{
-            await userRef.set({
-                displayName,
-                email,
-                createdAt,
-                ...additionalData
-            })
-
-        } catch (error) {
-            console.log('error creating user', error.message);
-        }
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
     }
-    return userRef;
+  }
+  return userRef;
 };
 
 firebase.initializeApp(config);
